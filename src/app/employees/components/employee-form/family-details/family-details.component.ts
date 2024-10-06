@@ -6,14 +6,14 @@ import * as EmployeeFormActions from '../../../../shared/store/employee-form.act
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-personal-details',
-  templateUrl: './personal-details.component.html',
-  styleUrl: './personal-details.component.css',
+  selector: 'app-family-details',
+  templateUrl: './family-details.component.html',
+  styleUrl: './family-details.component.css',
 })
-export class PersonalDetailsComponent implements OnInit {
-  personalDetailsForm: FormGroup;
+export class FamilyDetailsComponent implements OnInit {
+  familyDetailsForm: FormGroup;
   get form(): FormGroup {
-    return this.personalDetailsForm;
+    return this.familyDetailsForm;
   }
 
   genderOptions = [
@@ -38,7 +38,7 @@ export class PersonalDetailsComponent implements OnInit {
     private store: Store,
     private sanitizer: DomSanitizer
   ) {
-    this.personalDetailsForm = this.fb.group({
+    this.familyDetailsForm = this.fb.group({
       gender: [''],
       emailId: [''],
       mobileNo: [''],
@@ -52,7 +52,7 @@ export class PersonalDetailsComponent implements OnInit {
   ngOnInit() {
     this.store.select(selectPersonalDetails).subscribe((personalDetails) => {
       if (personalDetails) {
-        this.personalDetailsForm.patchValue(
+        this.familyDetailsForm.patchValue(
           {
             ...personalDetails,
           },
@@ -61,7 +61,7 @@ export class PersonalDetailsComponent implements OnInit {
       }
     });
 
-    this.personalDetailsForm.valueChanges.subscribe((value) => {
+    this.familyDetailsForm.valueChanges.subscribe((value) => {
       const sanitizedValue = {
         ...value,
         emailId: this.sanitizer.sanitize(1, value.emailId) || '',

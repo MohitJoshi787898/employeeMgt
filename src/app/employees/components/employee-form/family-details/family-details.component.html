@@ -1,0 +1,119 @@
+<form [formGroup]="familyDetailsForm">
+  <div class="row">
+    <!-- Gender -->
+    <div class="col-md-4 mb-3">
+      <label for="gender" class="form-label">Genderrrrr</label>
+      <select id="gender" class="form-select" formControlName="gender">
+        <option value="" disabled selected>Select Gender</option>
+        <option *ngFor="let option of genderOptions" [value]="option.value">
+          {{ option.name }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          familyDetailsForm.get('gender')?.invalid &&
+          (familyDetailsForm.get('gender')?.dirty ||
+            familyDetailsForm.get('gender')?.touched)
+        "
+        class="text-danger"
+      >
+        Gender is required or invalid.
+      </div>
+    </div>
+
+    <!-- Email ID -->
+    <div class="col-md-4 mb-3">
+      <label for="emailId" class="form-label">Email ID</label>
+      <input
+        id="emailId"
+        type="email"
+        class="form-control"
+        formControlName="emailId"
+        placeholder="Enter Email ID"
+      />
+      <div
+        *ngIf="
+          familyDetailsForm.get('emailId')?.invalid &&
+          (familyDetailsForm.get('emailId')?.dirty ||
+            familyDetailsForm.get('emailId')?.touched)
+        "
+        class="text-danger"
+      >
+        Valid Email ID is required or invalid.
+      </div>
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="col-md-4 mb-3">
+      <label for="mobileNo" class="form-label">Mobile Number</label>
+      <input
+        id="mobileNo"
+        type="tel"
+        class="form-control"
+        formControlName="mobileNo"
+        placeholder="Enter Mobile Number"
+      />
+      <div
+        *ngIf="
+          familyDetailsForm.get('mobileNo')?.invalid &&
+          (familyDetailsForm.get('mobileNo')?.dirty ||
+            familyDetailsForm.get('mobileNo')?.touched)
+        "
+        class="text-danger"
+      >
+        Mobile Number is required or invalid.
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="col-md-4 mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input
+        id="location"
+        type="text"
+        class="form-control"
+        formControlName="location"
+        placeholder="Enter Location"
+      />
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="col-md-4 mb-3">
+      <label for="DOB" class="form-label">Date of Birth</label>
+      <input id="DOB" type="date" class="form-control" formControlName="DOB" />
+      <div
+        *ngIf="
+          familyDetailsForm.get('DOB')?.invalid &&
+          (familyDetailsForm.get('DOB')?.dirty ||
+            familyDetailsForm.get('DOB')?.touched)
+        "
+        class="text-danger"
+      >
+        Date of Birth is required or invalid.
+      </div>
+    </div>
+
+    <!-- Birth Place -->
+    <div class="col-md-4 mb-3">
+      <label for="birthPlace" class="form-label">Birth Place</label>
+      <input
+        id="birthPlace"
+        type="text"
+        class="form-control"
+        formControlName="birthPlace"
+        placeholder="Enter Birth Place"
+      />
+    </div>
+
+    <!-- Blood Group -->
+    <div class="col-md-4 mb-3">
+      <label for="bloodGroup" class="form-label">Blood Group</label>
+      <select id="bloodGroup" class="form-select" formControlName="bloodGroup">
+        <option value="" disabled selected>Select Blood Group</option>
+        <option *ngFor="let option of bloodGroupOptions" [value]="option.value">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+</form>

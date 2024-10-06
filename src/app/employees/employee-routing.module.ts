@@ -6,6 +6,7 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
 import { ConfirmationComponent } from './components/employee-form/confirmation/confirmation.component';
 import { GeneralDetailsComponent } from './components/employee-form/general-details/general-details.component';
 import { PersonalDetailsComponent } from './components/employee-form/personal-details/personal-details.component';
+import { FamilyDetailsComponent } from './components/employee-form/family-details/family-details.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeListComponent },
@@ -15,9 +16,15 @@ const routes: Routes = [
     children: [
       { path: 'generaldetails', component: GeneralDetailsComponent },
       { path: 'personaldetails', component: PersonalDetailsComponent },
+      { path: 'Bank_PF_ESImation', component: PersonalDetailsComponent },
+      { path: 'contactAddress', component: GeneralDetailsComponent },
+      { path: 'familyDetails', component: FamilyDetailsComponent },
+      { path: 'experience_education', component: PersonalDetailsComponent },
+      { path: 'assetsDocs', component: GeneralDetailsComponent },
+      { path: 'salary', component: PersonalDetailsComponent },
       { path: 'confirmation', component: ConfirmationComponent },
-      { path: '', redirectTo: 'generaldetails', pathMatch: 'full' }
-    ]
+      { path: '', redirectTo: 'generaldetails', pathMatch: 'full' },
+    ],
   },
   {
     path: ':id/edit',
@@ -26,14 +33,14 @@ const routes: Routes = [
       { path: 'generaldetails', component: GeneralDetailsComponent },
       { path: 'personaldetails', component: PersonalDetailsComponent },
       { path: 'confirmation', component: ConfirmationComponent },
-      { path: '', redirectTo: 'generaldetails', pathMatch: 'full' }
-    ]
+      { path: '', redirectTo: 'generaldetails', pathMatch: 'full' },
+    ],
   },
   { path: ':id', component: EmployeeDetailsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmployeeRoutingModule { }
+export class EmployeeRoutingModule {}

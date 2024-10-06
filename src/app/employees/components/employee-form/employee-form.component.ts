@@ -55,7 +55,7 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
       { label: 'Experience & Education', routerLink: 'experience_education' },
       { label: 'Assets & Docs', routerLink: 'assetsDocs' },
       { label: 'Salary', routerLink: 'salary' },
-      { label: 'Confirmation', routerLink: 'Confirmation' },
+      { label: 'Confirmation', routerLink: 'confirmation' },
     ];
   }
 

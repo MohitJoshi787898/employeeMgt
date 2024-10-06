@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { GeneralDetailsComponent } from './components/employee-form/general-details/general-details.component';
 import { PersonalDetailsComponent } from './components/employee-form/personal-details/personal-details.component';
 import { ConfirmationComponent } from './components/employee-form/confirmation/confirmation.component';
+import { FamilyDetailsComponent } from './components/employee-form/family-details/family-details.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ConfirmationComponent } from './components/employee-form/confirmation/c
     GeneralDetailsComponent,
     PersonalDetailsComponent,
     ConfirmationComponent,
+    FamilyDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,6 @@ import { ConfirmationComponent } from './components/employee-form/confirmation/c
     PrimeNGModule,
     FormsModule,
   ],
-  providers: [MessageService]
+  providers: [MessageService],
 })
-export class EmployeeModule { }
+export class EmployeeModule {}

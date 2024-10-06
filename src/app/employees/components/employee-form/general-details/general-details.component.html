@@ -33,7 +33,209 @@
             id="id"
             type="text"
             class="form-control"
-            formControlName="Unitid"
+            formControlName="unitid"
+            placeholder="Enter Employee ID"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Unit ID is required or invalid.
+          </div>
+        </div>
+        <!-- Employee ID -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label">Employee ID</label>
+          <input
+            id="id"
+            type="text"
+            class="form-control"
+            formControlName="id"
+            placeholder="Enter Employee ID"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Employee ID is required or invalid.
+          </div>
+        </div>
+
+        <!-- First Name -->
+        <div class="col-md-3 mb-3">
+          <label for="firstName" class="form-label custom-label"
+            >First Name</label
+          >
+          <input
+            id="firstName"
+            type="text"
+            class="form-control"
+            formControlName="firstName"
+            placeholder="Enter First Name"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('firstName')?.invalid &&
+              (generalDetailsForm.get('firstName')?.dirty ||
+                generalDetailsForm.get('firstName')?.touched)
+            "
+            class="text-danger"
+          >
+            First Name is required or invalid.
+          </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="col-md-3 mb-3">
+          <label for="lastName" class="form-label custom-label"
+            >Last Name</label
+          >
+          <input
+            id="lastName"
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Enter Last Name"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('lastName')?.invalid &&
+              (generalDetailsForm.get('lastName')?.dirty ||
+                generalDetailsForm.get('lastName')?.touched)
+            "
+            class="text-danger"
+          >
+            Last Name is required or invalid.
+          </div>
+        </div>
+
+        <!-- Group DOJ -->
+        <div class="col-md-3 mb-3">
+          <label for="groupDOJ" class="form-label custom-label"
+            >Group DOJ</label
+          >
+          <input
+            id="groupDOJ"
+            type="date"
+            class="form-control"
+            formControlName="groupDOJ"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('groupDOJ')?.invalid &&
+              (generalDetailsForm.get('groupDOJ')?.dirty ||
+                generalDetailsForm.get('groupDOJ')?.touched)
+            "
+            class="text-danger"
+          >
+            Group DOJ is required or invalid.
+          </div>
+        </div>
+
+        <!-- Department -->
+        <div class="col-md-3 mb-3">
+          <label for="department" class="form-label custom-label"
+            >Department</label
+          >
+          <select
+            id="department"
+            class="form-select"
+            formControlName="department"
+          >
+            <option value="" disabled selected>Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.code">
+              {{ dept.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              generalDetailsForm.get('department')?.invalid &&
+              (generalDetailsForm.get('department')?.dirty ||
+                generalDetailsForm.get('department')?.touched)
+            "
+            class="text-danger"
+          >
+            Department is required or invalid.
+          </div>
+        </div>
+
+        <!-- Designation -->
+        <div class="col-md-3 mb-3">
+          <label for="designation" class="form-label custom-label"
+            >Designation</label
+          >
+          <input
+            id="designation"
+            type="text"
+            class="form-control"
+            formControlName="designation"
+            placeholder="Enter Designation"
+          />
+        </div>
+
+        <!-- Status -->
+        <div class="col-md-3 mb-3">
+          <label for="status" class="form-label custom-label">Status</label>
+          <select id="status" class="form-select" formControlName="status">
+            <option value="" disabled selected>Select Status</option>
+            <option *ngFor="let status of statuses" [value]="status.code">
+              {{ status.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              generalDetailsForm.get('status')?.invalid &&
+              (generalDetailsForm.get('status')?.dirty ||
+                generalDetailsForm.get('status')?.touched)
+            "
+            class="text-danger"
+          >
+            Status is required or invalid.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h2 class="det-head">Joining Detail</h2>
+        <!-- Generate Global Id -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label"
+            >Global id <span class="text-danger">*</span></label
+          >
+          <button
+            id="id"
+            class="form-control"
+            style="background-color: #f1e9f4; color: #594170"
+          >
+            Generate Global Id
+          </button>
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Employee ID is required or invalid.
+          </div>
+        </div>
+        <!-- Unit id* -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label">Unit id*</label>
+          <input
+            id="id"
+            type="text"
+            class="form-control"
+            formControlName="id"
             placeholder="Enter Employee ID"
           />
           <div
@@ -241,7 +443,12 @@
               />
             </svg>
           </button>
-          <button type="button" class="btn btn-outline-secondary">
+          <!-- <p-button (onClick)="showDialog()" label="Show" /> -->
+          <p-button
+            type="button"
+            (onClick)="showDialog()"
+            class="btn btn-outline-secondary bg-transparent"
+          >
             <svg
               width="16"
               height="15"
@@ -254,7 +461,7 @@
                 fill="#594170"
               />
             </svg>
-          </button>
+          </p-button>
         </div>
       </div>
       <p class="text-muted mt-2 text-center">Maximum file size: 10MB</p>
@@ -317,6 +524,61 @@
           </div>
         </div>
       </div>
+      <p-dialog
+        header="Uploading files..."
+        [modal]="true"
+        [(visible)]="visible"
+        [style]="{ width: '460px', height: '360px' }"
+        class="uploadImage-border"
+      >
+        <div class="uploadImage-border-modal">
+          <div class="modal-body">
+            <div class="d-flex justify-content-between mb-3">
+              <button
+                class="btn btn-outline-primary w-50 me-2 upload-modal-btn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.00336 14.9944C4.75632 14.9953 3.55398 14.5301 2.63224 13.6901C1.71051 12.8502 1.13592 11.6961 1.02121 10.4544C0.9065 9.21262 1.25996 7.97282 2.01222 6.97823C2.76449 5.98365 3.86127 5.30607 5.08736 5.07845C5.30272 3.93212 5.91191 2.89709 6.80958 2.15235C7.70726 1.40761 8.83697 1 10.0034 1C11.1697 1 12.2995 1.40761 13.1971 2.15235C14.0948 2.89709 14.704 3.93212 14.9194 5.07845C16.1413 5.3107 17.233 5.98992 17.9812 6.98356C18.7294 7.97721 19.0806 9.214 18.9662 10.4526C18.8518 11.6912 18.28 12.8427 17.3624 13.6825C16.4448 14.5222 15.2472 14.99 14.0034 14.9944M7.00336 9.99445L10.0034 6.99445M10.0034 6.99445L13.0034 9.99445M10.0034 6.99445V18.9944"
+                    stroke="#594170"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <p>Attached cloud files</p>
+              </button>
+              <button class="w-50 upload-modal-btn">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 13V14C1 14.7956 1.31607 15.5587 1.87868 16.1213C2.44129 16.6839 3.20435 17 4 17H14C14.7956 17 15.5587 16.6839 16.1213 16.1213C16.6839 15.5587 17 14.7956 17 14V13M13 5L9 1M9 1L5 5M9 1V13"
+                    stroke="#594170"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <p>Upload from Device</p>
+              </button>
+            </div>
+            <p class="upload-modal-up-text">or drag and drop files here</p>
+          </div>
+        </div>
+      </p-dialog>
     </div>
   </div>
 </form>

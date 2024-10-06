@@ -39,13 +39,15 @@ export class GeneralDetailsComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.generalDetailsForm = this.fb.group({
-      id: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      groupDOJ: ['', Validators.required],
+      id: [''],
+      empId: [''],
+      firstName: [''],
+      lastName: [''],
+      groupDOJ: [''],
       department: [''],
       designation: [''],
       status: [''],
+      unitid: [''],
     });
   }
 
@@ -79,4 +81,8 @@ export class GeneralDetailsComponent implements OnInit {
     });
   }
   openModal() {}
+  visible: boolean = false;
+  showDialog() {
+    this.visible = true;
+  }
 }
