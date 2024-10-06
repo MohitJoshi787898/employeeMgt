@@ -1,9 +1,15 @@
 .sidebar {
-  width: 60px;
+  width: 72px;
   height: calc(100vh - 70px);
   background-color: #ffffff;
   transition: width 0.3s ease;
   overflow: hidden;
+  position: relative;
+  top: -32px;
+  padding-top: 35px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 4px 4px 12px 0px #AE9DB433;
 }
 
 .sidebar:hover {
@@ -23,7 +29,7 @@
 .menu-link {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 10px 23px;
   color: #5e2572;
   text-decoration: none;
   white-space: nowrap;

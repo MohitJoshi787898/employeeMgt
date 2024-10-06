@@ -1,69 +1,322 @@
 <form [formGroup]="generalDetailsForm">
-    <div class="row">
-      <!-- Employee ID -->
-      <div class="col-md-4 mb-3">
-        <label for="id" class="form-label">Employee ID</label>
-        <input id="id" type="text" class="form-control" formControlName="id" placeholder="Enter Employee ID">
-        <div *ngIf="generalDetailsForm.get('id')?.invalid && (generalDetailsForm.get('id')?.dirty || generalDetailsForm.get('id')?.touched)" class="text-danger">
-          Employee ID is required or invalid.
+  <div class="row">
+    <div class="col-10">
+      <div class="row">
+        <h2 class="det-head">Employee Information</h2>
+        <!-- Generate Global Id -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label"
+            >Global id <span class="text-danger">*</span></label
+          >
+          <button
+            id="id"
+            class="form-control"
+            style="background-color: #f1e9f4; color: #594170"
+          >
+            Generate Global Id
+          </button>
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Employee ID is required or invalid.
+          </div>
         </div>
-      </div>
-  
-      <!-- First Name -->
-      <div class="col-md-4 mb-3">
-        <label for="firstName" class="form-label">First Name</label>
-        <input id="firstName" type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name">
-        <div *ngIf="generalDetailsForm.get('firstName')?.invalid && (generalDetailsForm.get('firstName')?.dirty || generalDetailsForm.get('firstName')?.touched)" class="text-danger">
-          First Name is required or invalid.
+        <!-- Unit id* -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label">Unit id*</label>
+          <input
+            id="id"
+            type="text"
+            class="form-control"
+            formControlName="Unitid"
+            placeholder="Enter Employee ID"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Unit ID is required or invalid.
+          </div>
         </div>
-      </div>
-  
-      <!-- Last Name -->
-      <div class="col-md-4 mb-3">
-        <label for="lastName" class="form-label">Last Name</label>
-        <input id="lastName" type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name">
-        <div *ngIf="generalDetailsForm.get('lastName')?.invalid && (generalDetailsForm.get('lastName')?.dirty || generalDetailsForm.get('lastName')?.touched)" class="text-danger">
-          Last Name is required or invalid.
+        <!-- Employee ID -->
+        <div class="col-md-3 mb-3">
+          <label for="id" class="form-label custom-label">Employee ID</label>
+          <input
+            id="id"
+            type="text"
+            class="form-control"
+            formControlName="id"
+            placeholder="Enter Employee ID"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('id')?.invalid &&
+              (generalDetailsForm.get('id')?.dirty ||
+                generalDetailsForm.get('id')?.touched)
+            "
+            class="text-danger"
+          >
+            Employee ID is required or invalid.
+          </div>
         </div>
-      </div>
-  
-      <!-- Group DOJ -->
-      <div class="col-md-4 mb-3">
-        <label for="groupDOJ" class="form-label">Group DOJ</label>
-        <input id="groupDOJ" type="date" class="form-control" formControlName="groupDOJ">
-        <div *ngIf="generalDetailsForm.get('groupDOJ')?.invalid && (generalDetailsForm.get('groupDOJ')?.dirty || generalDetailsForm.get('groupDOJ')?.touched)" class="text-danger">
-          Group DOJ is required or invalid.
+
+        <!-- First Name -->
+        <div class="col-md-3 mb-3">
+          <label for="firstName" class="form-label custom-label"
+            >First Name</label
+          >
+          <input
+            id="firstName"
+            type="text"
+            class="form-control"
+            formControlName="firstName"
+            placeholder="Enter First Name"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('firstName')?.invalid &&
+              (generalDetailsForm.get('firstName')?.dirty ||
+                generalDetailsForm.get('firstName')?.touched)
+            "
+            class="text-danger"
+          >
+            First Name is required or invalid.
+          </div>
         </div>
-      </div>
-  
-      <!-- Department -->
-      <div class="col-md-4 mb-3">
-        <label for="department" class="form-label">Department</label>
-        <select id="department" class="form-select" formControlName="department">
-          <option value="" disabled selected>Select Department</option>
-          <option *ngFor="let dept of departments" [value]="dept.code">{{ dept.name }}</option>
-        </select>
-        <div *ngIf="generalDetailsForm.get('department')?.invalid && (generalDetailsForm.get('department')?.dirty || generalDetailsForm.get('department')?.touched)" class="text-danger">
-          Department is required or invalid.
+
+        <!-- Last Name -->
+        <div class="col-md-3 mb-3">
+          <label for="lastName" class="form-label custom-label"
+            >Last Name</label
+          >
+          <input
+            id="lastName"
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Enter Last Name"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('lastName')?.invalid &&
+              (generalDetailsForm.get('lastName')?.dirty ||
+                generalDetailsForm.get('lastName')?.touched)
+            "
+            class="text-danger"
+          >
+            Last Name is required or invalid.
+          </div>
         </div>
-      </div>
-  
-      <!-- Designation -->
-      <div class="col-md-4 mb-3">
-        <label for="designation" class="form-label">Designation</label>
-        <input id="designation" type="text" class="form-control" formControlName="designation" placeholder="Enter Designation">
-      </div>
-  
-      <!-- Status -->
-      <div class="col-md-4 mb-3">
-        <label for="status" class="form-label">Status</label>
-        <select id="status" class="form-select" formControlName="status">
-          <option value="" disabled selected>Select Status</option>
-          <option *ngFor="let status of statuses" [value]="status.code">{{ status.name }}</option>
-        </select>
-        <div *ngIf="generalDetailsForm.get('status')?.invalid && (generalDetailsForm.get('status')?.dirty || generalDetailsForm.get('status')?.touched)" class="text-danger">
-          Status is required or invalid.
+
+        <!-- Group DOJ -->
+        <div class="col-md-3 mb-3">
+          <label for="groupDOJ" class="form-label custom-label"
+            >Group DOJ</label
+          >
+          <input
+            id="groupDOJ"
+            type="date"
+            class="form-control"
+            formControlName="groupDOJ"
+          />
+          <div
+            *ngIf="
+              generalDetailsForm.get('groupDOJ')?.invalid &&
+              (generalDetailsForm.get('groupDOJ')?.dirty ||
+                generalDetailsForm.get('groupDOJ')?.touched)
+            "
+            class="text-danger"
+          >
+            Group DOJ is required or invalid.
+          </div>
+        </div>
+
+        <!-- Department -->
+        <div class="col-md-3 mb-3">
+          <label for="department" class="form-label custom-label"
+            >Department</label
+          >
+          <select
+            id="department"
+            class="form-select"
+            formControlName="department"
+          >
+            <option value="" disabled selected>Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.code">
+              {{ dept.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              generalDetailsForm.get('department')?.invalid &&
+              (generalDetailsForm.get('department')?.dirty ||
+                generalDetailsForm.get('department')?.touched)
+            "
+            class="text-danger"
+          >
+            Department is required or invalid.
+          </div>
+        </div>
+
+        <!-- Designation -->
+        <div class="col-md-3 mb-3">
+          <label for="designation" class="form-label custom-label"
+            >Designation</label
+          >
+          <input
+            id="designation"
+            type="text"
+            class="form-control"
+            formControlName="designation"
+            placeholder="Enter Designation"
+          />
+        </div>
+
+        <!-- Status -->
+        <div class="col-md-3 mb-3">
+          <label for="status" class="form-label custom-label">Status</label>
+          <select id="status" class="form-select" formControlName="status">
+            <option value="" disabled selected>Select Status</option>
+            <option *ngFor="let status of statuses" [value]="status.code">
+              {{ status.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              generalDetailsForm.get('status')?.invalid &&
+              (generalDetailsForm.get('status')?.dirty ||
+                generalDetailsForm.get('status')?.touched)
+            "
+            class="text-danger"
+          >
+            Status is required or invalid.
+          </div>
         </div>
       </div>
     </div>
-  </form>
+    <div class="col-2">
+      <label for="profileImage" class="form-label custom-label"
+        >Profile Image <span class="text-danger">*</span></label
+      >
+      <div class="uploadImage-border mb-4" id="profileImage">
+        <div class="text-muted">
+          <svg
+            width="48"
+            height="42"
+            viewBox="0 0 48 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M32 41.5714L21.1157 21.6167L29.7143 7.28573L48 41.5714H32ZM13.7143 16.4286L27.4286 41.5714H0L13.7143 16.4286ZM8 11.8572C4.84409 11.8572 2.28571 9.29878 2.28571 6.14287C2.28571 2.98697 4.84409 0.428589 8 0.428589C11.1559 0.428589 13.7143 2.98697 13.7143 6.14287C13.7143 9.29878 11.1559 11.8572 8 11.8572Z"
+              fill="#C0C0C0"
+            />
+          </svg>
+        </div>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <button
+            (click)="openModal()"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <svg
+              width="16"
+              height="15"
+              viewBox="0 0 16 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.53617 2.07141L5.0195 3.57141H2.11628V12.5714H14.2496V3.57141H11.3464L9.82974 2.07141H6.53617ZM5.90794 0.571411H10.4579L11.9746 2.07141H15.0079C15.4268 2.07141 15.7663 2.4072 15.7663 2.82141V13.3214C15.7663 13.7356 15.4268 14.0714 15.0079 14.0714H1.35794C0.93913 14.0714 0.599609 13.7356 0.599609 13.3214V2.82141C0.599609 2.4072 0.93913 2.07141 1.35794 2.07141H4.39128L5.90794 0.571411ZM8.18294 11.8214C5.87945 11.8214 4.01211 9.97461 4.01211 7.69641C4.01211 5.41823 5.87945 3.57141 8.18294 3.57141C10.4865 3.57141 12.3538 5.41823 12.3538 7.69641C12.3538 9.97461 10.4865 11.8214 8.18294 11.8214ZM8.18294 10.3214C9.6488 10.3214 10.8371 9.14616 10.8371 7.69641C10.8371 6.24666 9.6488 5.07141 8.18294 5.07141C6.71709 5.07141 5.52878 6.24666 5.52878 7.69641C5.52878 9.14616 6.71709 10.3214 8.18294 10.3214Z"
+                fill="#594170"
+              />
+            </svg>
+          </button>
+          <button type="button" class="btn btn-outline-secondary">
+            <svg
+              width="16"
+              height="15"
+              viewBox="0 0 16 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.75007 13.3214H13.8834V8.07141H15.4001V14.0714C15.4001 14.4856 15.0606 14.8214 14.6417 14.8214H0.991732C0.572919 14.8214 0.233398 14.4856 0.233398 14.0714V8.07141H1.75007V13.3214ZM9.3334 5.82141V10.3214H6.30007V5.82141H2.5084L7.81673 0.571411L13.1251 5.82141H9.3334Z"
+                fill="#594170"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <p class="text-muted mt-2 text-center">Maximum file size: 10MB</p>
+
+      <!-- Modal -->
+
+      <div
+        class="modal fade"
+        id="uploadModal"
+        aria-labelledby="uploadModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="uploadModalLabel">Upload</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-outline-primary w-50 me-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="bi bi-cloud-upload"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 5a3.5 3.5 0 0 0-3.16 2.01A3 3 0 1 0 2 10v.001h1v1.25A2.25 2.25 0 0 0 5.25 13.5h8.5A2.25 2.25 0 0 0 16 11.25V11a2.5 2.5 0 0 0-2.5-2.5h-.216a3.5 3.5 0 0 0-5.284-3.5zM3 9v-.999a2 2 0 1 1 4 0V9H3zm8-4.5a2.5 2.5 0 0 0-4.996-.344 3.01 3.01 0 0 1 .696.482C6.274 5.178 6.557 5.5 7 5.5h3c.513 0 1.014-.228 1.236-.592A2.5 2.5 0 0 0 11 4.5z"
+                    />
+                  </svg>
+                  Cloud Upload
+                </button>
+                <button class="btn btn-outline-primary w-50">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="bi bi-device-laptop"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M12.5 1h-9a.5.5 0 0 0-.5.5V10h10V1.5a.5.5 0 0 0-.5-.5zM3 10V1.5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1V10h.5a1 1 0 0 1 1 1v.5H1V11a1 1 0 0 1 1-1H3zm12 2H1a.5.5 0 0 0-.5.5v.5h15v-.5a.5.5 0 0 0-.5-.5z"
+                    />
+                  </svg>
+                  Upload from Device
+                </button>
+              </div>
+              <p class="text-center">or drag and drop files here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

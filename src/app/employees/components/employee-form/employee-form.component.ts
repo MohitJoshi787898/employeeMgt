@@ -1,4 +1,10 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
@@ -17,7 +23,7 @@ import { PersonalDetailsComponent } from './personal-details/personal-details.co
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css'],
   providers: [MessageService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeFormComponent implements OnInit, AfterViewInit {
   steps: MenuItem[];
@@ -26,8 +32,10 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
   id: number | null = null;
   employeeDetails$!: Observable<any>;
 
-  @ViewChild(GeneralDetailsComponent) generalDetailsComponent!: GeneralDetailsComponent;
-  @ViewChild(PersonalDetailsComponent) personalDetailsComponent!: PersonalDetailsComponent;
+  @ViewChild(GeneralDetailsComponent)
+  generalDetailsComponent!: GeneralDetailsComponent;
+  @ViewChild(PersonalDetailsComponent)
+  personalDetailsComponent!: PersonalDetailsComponent;
 
   constructor(
     private router: Router,
@@ -41,18 +49,24 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
     this.steps = [
       { label: 'General Details', routerLink: 'generaldetails' },
       { label: 'Personal Details', routerLink: 'personaldetails' },
-      { label: 'Confirmation', routerLink: 'confirmation' }
+      { label: 'Bank/PF/ESI', routerLink: 'Bank_PF_ESImation' },
+      { label: 'Contact & Address', routerLink: 'contactAddress' },
+      { label: 'Family Details', routerLink: 'FamilyDetails' },
+      { label: 'Experience & Education', routerLink: 'experience_education' },
+      { label: 'Assets & Docs', routerLink: 'assetsDocs' },
+      { label: 'Salary', routerLink: 'salary' },
+      { label: 'Confirmation', routerLink: 'Confirmation' },
     ];
   }
 
   ngOnInit() {
     this.checkRouteForEditMode();
 
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.updateActiveIndex();
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.updateActiveIndex();
+      });
   }
 
   ngAfterViewInit() {
@@ -67,7 +81,7 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
   private checkRouteForEditMode() {
     const urlSegments = this.router.url.split('/');
     const isEditRoute = urlSegments.includes('edit');
-    this.route.paramMap.pipe(take(1)).subscribe(params => {
+    this.route.paramMap.pipe(take(1)).subscribe((params) => {
       const idParam = params.get('id');
       this.id = idParam ? parseInt(idParam, 10) : null;
       this.isEditMode = isEditRoute && this.id !== null;
@@ -81,7 +95,9 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
 
   private updateActiveIndex() {
     const currentUrl = this.router.url;
-    const activeStep = this.steps.findIndex(step => currentUrl.includes(step.routerLink!));
+    const activeStep = this.steps.findIndex((step) =>
+      currentUrl.includes(step.routerLink!)
+    );
     if (activeStep !== -1) {
       this.activeIndex = activeStep;
     }
@@ -94,11 +110,19 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
     }
 
     try {
-      const employees = await firstValueFrom(this.employeeService.getEmployees());
-      const employee = employees.find(emp => emp.id === this.id);
+      const employees = await firstValueFrom(
+        this.employeeService.getEmployees()
+      );
+      const employee = employees.find((emp) => emp.id === this.id);
       if (employee) {
-        this.store.dispatch(EmployeeFormActions.updateGeneralDetails({ generalDetails: employee }));
-        this.store.dispatch(EmployeeFormActions.updatePersonalDetails({ personalDetails: employee }));
+        this.store.dispatch(
+          EmployeeFormActions.updateGeneralDetails({ generalDetails: employee })
+        );
+        this.store.dispatch(
+          EmployeeFormActions.updatePersonalDetails({
+            personalDetails: employee,
+          })
+        );
       } else {
         console.error('Employee not found');
         this.router.navigate(['/employees']);
@@ -110,16 +134,32 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
 
   nextStep() {
     // Check if the current step is General Details
-    if (this.activeIndex === 0) { // General Details
-      if (!this.generalDetailsComponent || !this.generalDetailsComponent.form.valid) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields in General Details.' });
+    if (this.activeIndex === 0) {
+      // General Details
+      if (
+        !this.generalDetailsComponent ||
+        !this.generalDetailsComponent.form.valid
+      ) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Please fill in all required fields in General Details.',
+        });
         return; // Prevent moving to the next step
       }
     }
     // Check if the current step is Personal Details
-    else if (this.activeIndex === 1) { // Personal Details
-      if (!this.personalDetailsComponent || !this.personalDetailsComponent.form.valid) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields in Personal Details.' });
+    else if (this.activeIndex === 1) {
+      // Personal Details
+      if (
+        !this.personalDetailsComponent ||
+        !this.personalDetailsComponent.form.valid
+      ) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Please fill in all required fields in Personal Details.',
+        });
         return; // Prevent moving to the next step
       }
     }
@@ -148,48 +188,69 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
   }
 
   saveEmployee() {
-    this.store.select(selectAllEmployeeDetails).pipe(take(1)).subscribe(employeeData => {
-      const sanitizedEmployeeData = {
-        ...employeeData,
-        firstName: this.sanitizeInput(employeeData.firstName),
-        lastName: this.sanitizeInput(employeeData.lastName),
-        department: this.sanitizeInput(employeeData.department),
-        designation: this.sanitizeInput(employeeData.designation),
-        gender: this.sanitizeInput(employeeData.gender),
-        emailId: this.sanitizeInput(employeeData.emailId),
-        mobileNo: this.sanitizeInput(employeeData.mobileNo),
-        location: this.sanitizeInput(employeeData.location),
-        DOB: this.formatDate(employeeData.DOB),
-        birthPlace: this.sanitizeInput(employeeData.birthPlace),
-        bloodGroup: this.sanitizeInput(employeeData.bloodGroup),
-        groupDOJ: this.formatDate(employeeData.groupDOJ),
-        status: this.sanitizeInput(employeeData.status)
-      };
+    this.store
+      .select(selectAllEmployeeDetails)
+      .pipe(take(1))
+      .subscribe((employeeData) => {
+        const sanitizedEmployeeData = {
+          ...employeeData,
+          firstName: this.sanitizeInput(employeeData.firstName),
+          lastName: this.sanitizeInput(employeeData.lastName),
+          department: this.sanitizeInput(employeeData.department),
+          designation: this.sanitizeInput(employeeData.designation),
+          gender: this.sanitizeInput(employeeData.gender),
+          emailId: this.sanitizeInput(employeeData.emailId),
+          mobileNo: this.sanitizeInput(employeeData.mobileNo),
+          location: this.sanitizeInput(employeeData.location),
+          DOB: this.formatDate(employeeData.DOB),
+          birthPlace: this.sanitizeInput(employeeData.birthPlace),
+          bloodGroup: this.sanitizeInput(employeeData.bloodGroup),
+          groupDOJ: this.formatDate(employeeData.groupDOJ),
+          status: this.sanitizeInput(employeeData.status),
+        };
 
-      if (this.isEditMode && this.id !== null) {
-        this.employeeService.updateEmployee(this.id, sanitizedEmployeeData).subscribe({
-          next: () => {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee updated successfully' });
-            this.router.navigate(['/employees']);
-          },
-          error: (error) => {
-            console.error('Error updating employee:', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update employee' });
-          }
-        });
-      } else {
-        this.employeeService.addEmployee(sanitizedEmployeeData).subscribe({
-          next: () => {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee added successfully' });
-            this.router.navigate(['/employees']);
-          },
-          error: (error: any) => {
-            console.error('Error creating employee:', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to add employee' });
-          }
-        });
-      }
-    });
+        if (this.isEditMode && this.id !== null) {
+          this.employeeService
+            .updateEmployee(this.id, sanitizedEmployeeData)
+            .subscribe({
+              next: () => {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Success',
+                  detail: 'Employee updated successfully',
+                });
+                this.router.navigate(['/employees']);
+              },
+              error: (error) => {
+                console.error('Error updating employee:', error);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: 'Failed to update employee',
+                });
+              },
+            });
+        } else {
+          this.employeeService.addEmployee(sanitizedEmployeeData).subscribe({
+            next: () => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Employee added successfully',
+              });
+              this.router.navigate(['/employees']);
+            },
+            error: (error: any) => {
+              console.error('Error creating employee:', error);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Failed to add employee',
+              });
+            },
+          });
+        }
+      });
   }
 
   private formatDate(date: Date | null): string {
@@ -202,7 +263,11 @@ export class EmployeeFormComponent implements OnInit, AfterViewInit {
   }
 
   sendForApproval() {
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Dummy sent for approval ' });
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Info',
+      detail: 'Dummy sent for approval ',
+    });
     this.router.navigate(['/employees']);
   }
 }

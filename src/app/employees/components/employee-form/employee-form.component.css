@@ -1,5 +1,8 @@
 .employee-add-container {
-  padding: 20px;
+  padding: 0px 20px;
+}
+.employee-add-container h1 {
+  font-size: 1.6rem;
 }
 
 ::ng-deep .p-steps .p-steps-item {
@@ -9,36 +12,95 @@
 ::ng-deep .p-steps .p-steps-item .p-menuitem-link {
   background: transparent;
   transition: box-shadow 0.2s;
+  text-decoration: none;
 }
 
 ::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-number {
-  background: #6366F1;
-  color: #ffffff;
+  text-decoration: none;
+  text-decoration-color: transparent;
+
+  border: 5px solid #594170;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  background: #fff;
 }
 
 ::ng-deep .p-steps .p-steps-item .p-steps-number {
-  color: #6366F1;
-  border: 1px solid #6366F1;
-  background: #ffffff;
+  color: transparent;
+  border: 1px solid #594170;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  background: #ae9db4;
 }
 
 ::ng-deep .p-steps .p-steps-item .p-steps-title {
   color: #6c757d;
+  text-decoration: none !important;
 }
 
 ::ng-deep .p-steps .p-steps-item .p-menuitem-link .p-steps-title.completed {
-  color: #6366F1;
+  color: #594170;
 }
 
 ::ng-deep .p-steps .p-steps-item .p-menuitem-link .p-steps-title.active {
   font-weight: bold;
-  color: #6366F1;
+  color: #594170;
 }
 
 ::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-title {
   font-weight: bold;
 }
 
-::ng-deep .p-steps .p-steps-item:before {
-  border-top: 1px solid #6366F1;
+/* ::ng-deep .p-steps .p-steps-item:before {
+  border-top: 1px solid #594170;
+} */
+
+/* ::ng-deep .p-steps .p-steps-item:before {
+  content: " ";
+  border-top: 1px solid #594170;
+  text-decoration: none;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    display: block;
+    position: absolute;
+    margin-top: -1rem;
+} */
+
+::ng-deep .p-steps .p-steps-item:not(:first-child):not(:last-child):before {
+  content: " ";
+  border-top: 1px solid #594170;
+  text-decoration: none;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  display: block;
+  position: absolute;
+  margin-top: -1rem;
+}
+
+/* Apply to the first child */
+::ng-deep .p-steps .p-steps-item:first-child:before {
+  content: " ";
+  border-top: 1px solid #594170;
+  text-decoration: none;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  display: block;
+  position: absolute;
+  margin-top: -1rem;
+}
+
+/* Apply to the last child */
+::ng-deep .p-steps .p-steps-item:last-child:before {
+  content: " ";
+  border-top: 1px solid #594170;
+  text-decoration: none;
+  width: 50%;
+  top: 50%;
+  left: 0;
+  display: block;
+  position: absolute;
+  margin-top: -1rem;
 }

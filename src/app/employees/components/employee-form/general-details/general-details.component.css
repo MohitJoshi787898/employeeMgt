@@ -1,13 +1,73 @@
 :host {
-    display: block;
-    padding: 1rem;
-  }
-  .p-field {
-    margin-bottom: 1rem;
-  }
-  label {
-    font-weight: bold;
-  }
-  .text-danger {
-    color: red;
-  }
+  display: block;
+  padding: 1rem;
+}
+.p-field {
+  margin-bottom: 1rem;
+}
+label {
+  font-weight: bold;
+}
+.text-danger {
+  color: red;
+}
+.uploadImage-border {
+  border: 1px dashed #d9d7db;
+  outline: 1px solid #d9d7db;
+  outline-offset: 10px;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 10px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.det-head {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 22px;
+  margin-bottom: 15px;
+}
+
+.custom-label {
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+input::placeholder {
+  color: #cbcccb;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+
+input:focus {
+  border: 2px solid #f1e9f4;
+  outline: none;
+
+  /* box-shadow: 0 0 0 0.25rem rgba(191, 15, 255, 0.1) !important; */
+  box-shadow: 0 0 8px rgba(241, 233, 244, 0.8) !important;
+}
+input[type="date"],
+input[type="options"] {
+  color: #cbcccb;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: #594170; /* Change the color of the calendar icon */
+  border-radius: 4px; /* Optional: make the button rounded */
+  padding: 2px; /* Optional: add some padding */
+  background-color: #d4bfe72a;
+}
