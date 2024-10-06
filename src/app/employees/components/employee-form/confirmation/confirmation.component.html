@@ -1,0 +1,21 @@
+<div class="confirmation-container" *ngIf="employeeData$ | async as employeeData">
+    <h2>Please confirm your details</h2>
+    <p-panel header="General Details">
+      <p><strong>Employee ID:</strong> {{employeeData.id}}</p>
+      <p><strong>First Name:</strong> {{employeeData.firstName}}</p>
+      <p><strong>Last Name:</strong> {{employeeData.lastName}}</p>
+      <p><strong>Group DOJ:</strong> {{employeeData.groupDOJ}}</p>
+      <p><strong>Department:</strong> {{employeeData.department}}</p>
+      <p><strong>Designation:</strong> {{employeeData.designation}}</p>
+      <p><strong>Status:</strong> {{employeeData.status}}</p>
+    </p-panel>
+    <p-panel header="Personal Details">
+      <p><strong>Gender:</strong> {{employeeData.gender}}</p>
+      <p><strong>Email ID:</strong> {{employeeData.emailId}}</p>
+      <p><strong>Mobile Number:</strong> {{employeeData.mobileNo}}</p>
+      <p><strong>Location:</strong> {{employeeData.location}}</p>
+      <p><strong>Date of Birth:</strong> {{employeeData.DOB}}</p>
+      <p><strong>Birth Place:</strong> {{employeeData.birthPlace}}</p>
+      <p><strong>Blood Group:</strong> {{employeeData.bloodGroup}}</p>
+    </p-panel>
+  </div>

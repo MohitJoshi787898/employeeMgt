@@ -1,0 +1,44 @@
+.employee-add-container {
+  padding: 20px;
+}
+
+::ng-deep .p-steps .p-steps-item {
+  flex: 1;
+}
+
+::ng-deep .p-steps .p-steps-item .p-menuitem-link {
+  background: transparent;
+  transition: box-shadow 0.2s;
+}
+
+::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-number {
+  background: #6366F1;
+  color: #ffffff;
+}
+
+::ng-deep .p-steps .p-steps-item .p-steps-number {
+  color: #6366F1;
+  border: 1px solid #6366F1;
+  background: #ffffff;
+}
+
+::ng-deep .p-steps .p-steps-item .p-steps-title {
+  color: #6c757d;
+}
+
+::ng-deep .p-steps .p-steps-item .p-menuitem-link .p-steps-title.completed {
+  color: #6366F1;
+}
+
+::ng-deep .p-steps .p-steps-item .p-menuitem-link .p-steps-title.active {
+  font-weight: bold;
+  color: #6366F1;
+}
+
+::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-title {
+  font-weight: bold;
+}
+
+::ng-deep .p-steps .p-steps-item:before {
+  border-top: 1px solid #6366F1;
+}

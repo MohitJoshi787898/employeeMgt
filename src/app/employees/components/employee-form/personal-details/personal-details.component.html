@@ -1,0 +1,63 @@
+<form [formGroup]="personalDetailsForm">
+    <div class="row">
+      <!-- Gender -->
+      <div class="col-md-4 mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select id="gender" class="form-select" formControlName="gender">
+          <option value="" disabled selected>Select Gender</option>
+          <option *ngFor="let option of genderOptions" [value]="option.value">{{ option.name }}</option>
+        </select>
+        <div *ngIf="personalDetailsForm.get('gender')?.invalid && (personalDetailsForm.get('gender')?.dirty || personalDetailsForm.get('gender')?.touched)" class="text-danger">
+          Gender is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Email ID -->
+      <div class="col-md-4 mb-3">
+        <label for="emailId" class="form-label">Email ID</label>
+        <input id="emailId" type="email" class="form-control" formControlName="emailId" placeholder="Enter Email ID">
+        <div *ngIf="personalDetailsForm.get('emailId')?.invalid && (personalDetailsForm.get('emailId')?.dirty || personalDetailsForm.get('emailId')?.touched)" class="text-danger">
+          Valid Email ID is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Mobile Number -->
+      <div class="col-md-4 mb-3">
+        <label for="mobileNo" class="form-label">Mobile Number</label>
+        <input id="mobileNo" type="tel" class="form-control" formControlName="mobileNo" placeholder="Enter Mobile Number">
+        <div *ngIf="personalDetailsForm.get('mobileNo')?.invalid && (personalDetailsForm.get('mobileNo')?.dirty || personalDetailsForm.get('mobileNo')?.touched)" class="text-danger">
+          Mobile Number is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Location -->
+      <div class="col-md-4 mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input id="location" type="text" class="form-control" formControlName="location" placeholder="Enter Location">
+      </div>
+  
+      <!-- Date of Birth -->
+      <div class="col-md-4 mb-3">
+        <label for="DOB" class="form-label">Date of Birth</label>
+        <input id="DOB" type="date" class="form-control" formControlName="DOB">
+        <div *ngIf="personalDetailsForm.get('DOB')?.invalid && (personalDetailsForm.get('DOB')?.dirty || personalDetailsForm.get('DOB')?.touched)" class="text-danger">
+          Date of Birth is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Birth Place -->
+      <div class="col-md-4 mb-3">
+        <label for="birthPlace" class="form-label">Birth Place</label>
+        <input id="birthPlace" type="text" class="form-control" formControlName="birthPlace" placeholder="Enter Birth Place">
+      </div>
+  
+      <!-- Blood Group -->
+      <div class="col-md-4 mb-3">
+        <label for="bloodGroup" class="form-label">Blood Group</label>
+        <select id="bloodGroup" class="form-select" formControlName="bloodGroup">
+          <option value="" disabled selected>Select Blood Group</option>
+          <option *ngFor="let option of bloodGroupOptions" [value]="option.value">{{ option.name }}</option>
+        </select>
+      </div>
+    </div>
+  </form>

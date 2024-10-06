@@ -1,0 +1,69 @@
+<form [formGroup]="generalDetailsForm">
+    <div class="row">
+      <!-- Employee ID -->
+      <div class="col-md-4 mb-3">
+        <label for="id" class="form-label">Employee ID</label>
+        <input id="id" type="text" class="form-control" formControlName="id" placeholder="Enter Employee ID">
+        <div *ngIf="generalDetailsForm.get('id')?.invalid && (generalDetailsForm.get('id')?.dirty || generalDetailsForm.get('id')?.touched)" class="text-danger">
+          Employee ID is required or invalid.
+        </div>
+      </div>
+  
+      <!-- First Name -->
+      <div class="col-md-4 mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input id="firstName" type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name">
+        <div *ngIf="generalDetailsForm.get('firstName')?.invalid && (generalDetailsForm.get('firstName')?.dirty || generalDetailsForm.get('firstName')?.touched)" class="text-danger">
+          First Name is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Last Name -->
+      <div class="col-md-4 mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input id="lastName" type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name">
+        <div *ngIf="generalDetailsForm.get('lastName')?.invalid && (generalDetailsForm.get('lastName')?.dirty || generalDetailsForm.get('lastName')?.touched)" class="text-danger">
+          Last Name is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Group DOJ -->
+      <div class="col-md-4 mb-3">
+        <label for="groupDOJ" class="form-label">Group DOJ</label>
+        <input id="groupDOJ" type="date" class="form-control" formControlName="groupDOJ">
+        <div *ngIf="generalDetailsForm.get('groupDOJ')?.invalid && (generalDetailsForm.get('groupDOJ')?.dirty || generalDetailsForm.get('groupDOJ')?.touched)" class="text-danger">
+          Group DOJ is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Department -->
+      <div class="col-md-4 mb-3">
+        <label for="department" class="form-label">Department</label>
+        <select id="department" class="form-select" formControlName="department">
+          <option value="" disabled selected>Select Department</option>
+          <option *ngFor="let dept of departments" [value]="dept.code">{{ dept.name }}</option>
+        </select>
+        <div *ngIf="generalDetailsForm.get('department')?.invalid && (generalDetailsForm.get('department')?.dirty || generalDetailsForm.get('department')?.touched)" class="text-danger">
+          Department is required or invalid.
+        </div>
+      </div>
+  
+      <!-- Designation -->
+      <div class="col-md-4 mb-3">
+        <label for="designation" class="form-label">Designation</label>
+        <input id="designation" type="text" class="form-control" formControlName="designation" placeholder="Enter Designation">
+      </div>
+  
+      <!-- Status -->
+      <div class="col-md-4 mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select id="status" class="form-select" formControlName="status">
+          <option value="" disabled selected>Select Status</option>
+          <option *ngFor="let status of statuses" [value]="status.code">{{ status.name }}</option>
+        </select>
+        <div *ngIf="generalDetailsForm.get('status')?.invalid && (generalDetailsForm.get('status')?.dirty || generalDetailsForm.get('status')?.touched)" class="text-danger">
+          Status is required or invalid.
+        </div>
+      </div>
+    </div>
+  </form>

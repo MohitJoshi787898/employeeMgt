@@ -1,0 +1,44 @@
+<div class="employee-add-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 *ngIf="!isEditMode">Add Employee</h1>
+        <h1 *ngIf="isEditMode">
+            Modify Details
+            <ng-container *ngIf="id"> - Employee ID: {{id}}</ng-container>
+        </h1>
+    </div>
+</div>
+<div class="card py-5 px-4">
+    <p-toast></p-toast>
+    <p-steps [model]="steps" [activeIndex]="activeIndex" [readonly]="true">
+        <ng-template pTemplate="item" let-item let-i="index">
+            <span class="p-steps-number">{{i + 1}}</span>
+            <span class="p-steps-title" [ngClass]="{'completed': i < activeIndex, 'active': i === activeIndex}">{{item.label}}</span>
+        </ng-template>
+    </p-steps>
+    <div class="mt-4">
+        <ng-container *ngIf="activeIndex === 0">
+            <app-general-details></app-general-details>
+        </ng-container>
+        <ng-container *ngIf="activeIndex === 1">
+            <app-personal-details></app-personal-details>
+        </ng-container>
+        <ng-container *ngIf="activeIndex === 2">
+            <app-confirmation></app-confirmation>
+        </ng-container>
+    </div>
+    <div class="mt-4 d-flex justify-content-between">
+        <p-button [style]="{'border-radius':'25px'}" severity="secondary" label="Back" (onClick)="prevStep()" [disabled]="activeIndex === 0"></p-button>
+        <p-button [style]="{'border-radius':'25px'}" label="Cancel" routerLink="/employees" routerLinkActive="true"></p-button>
+        
+        <!-- Next Step Button -->
+        <ng-container *ngIf="activeIndex < steps.length - 1">
+            <p-button [style]="{'border-radius':'25px'}" label="Next" (onClick)="nextStep()"></p-button>
+        </ng-container>
+
+        <!-- Save Button for the last step -->
+        <ng-container *ngIf="activeIndex === steps.length - 1">
+            <p-button [style]="{'border-radius':'25px'}" label="Save" (onClick)="saveEmployee()"></p-button>
+            <p-button [style]="{'border-radius':'25px'}" label="Send for Approval" (onClick)="sendForApproval()"></p-button>
+        </ng-container>
+    </div>
+</div>

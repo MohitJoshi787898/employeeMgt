@@ -1,0 +1,93 @@
+<div class="employee-list-container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Employee List <i class="fs-4 pi pi-bookmark"></i></h1>
+    <div>
+      <button pButton [style]="{'border-radius':'25px','margin-right':'20px'}" type="button" icon="pi pi-upload"
+        label="Upload Bulk Photos" class="p-button-outlined mr-2"></button>
+      <button pButton [style]="{'border-radius':'25px'}" type="button" icon="pi pi-plus" label="Add Employee"
+        class="p-button-primary" (click)="addEmployee()"></button>
+    </div>
+  </div>
+
+  <p-tabView>
+    <p-tabPanel header="All (2500)">
+      <div class="filter-container d-flex justify-content-between align-items-center my-3">
+        <div class="d-flex">
+          <!-- <p-dropdown [style]="{'margin-right': '20px'}" [options]="unitIds" [(ngModel)]="selectedUnitId"
+            [ngModelOptions]="{standalone:true}" placeholder="Unit Id" class="mr-2"></p-dropdown>
+          <p-dropdown [style]="{'margin-right': '20px'}" [options]="employeeTypes" [(ngModel)]="selectedEmployeeType"
+            [ngModelOptions]="{standalone:true}" placeholder="Employee type" class="mr-2"></p-dropdown>
+          <p-dropdown [style]="{'margin-right': '20px'}" [options]="employeeNames" [(ngModel)]="selectedEmployeeName"
+            [ngModelOptions]="{standalone:true}" placeholder="Employee name (Id)" class="mr-2"></p-dropdown>
+          <button pButton [style]="{'border-radius':'25px'}" type="button" label="Get Data" class="p-button-primary"
+            (click)="getData()"></button> -->
+        </div>
+        <div class="d-flex align-items-center">
+          <span class="p-input-icon-left mr-2">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [style]="{'border-radius':'25px'}" placeholder="Search emp. first name"
+              (input)="onSearch($event)">
+          </span>
+          <button pButton type="button" [style]="{'border-radius':'10px', 'margin-left':'20px'}" icon="pi pi-download"
+            class="p-button-secondary"></button>
+        </div>
+      </div>
+
+      <p-table [value]="filteredEmployees" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        [totalRecords]="totalRecords" [loading]="loading" [showFirstLastIcon]="false"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id">Emp. ID <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="firstName">Emp. Name <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="department">Department <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="designation">Designation <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="gender">Gender <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="location"> Location <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="groupDOJ">Group DOJ <i class="pi pi-sort"></i></th>
+            <th pSortableColumn="status">Status <i class="pi pi-sort"></i></th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-employee>
+          <tr>
+            <td>{{employee.id}}</td>
+            <td>{{employee.firstName | titlecase }} {{ employee.lastName | titlecase}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.designation}}</td>
+            <td>{{employee.gender}}</td>
+            <td>{{employee.location}}</td>
+            <td>{{employee.groupDOJ}}</td>
+            <td>
+              <span [ngSwitch]="employee.status">
+                <p-tag *ngSwitchCase="'Active'" severity="success" [value]="employee.status" [rounded]="true" />
+                <p-tag *ngSwitchCase="'Inactive'" severity="danger" [value]="employee.status" [rounded]="true" />
+                <p-tag *ngSwitchCase="'Draft'" severity="warning" [value]="employee.status" [rounded]="true" />
+              </span>
+            </td>
+            <td>
+              <button pButton type="button" icon="pi pi-ellipsis-v" (click)="op.toggle($event)" class="p-button-text"></button>
+              <p-overlayPanel #op>
+                <div class="p-2">
+                  <div class="mb-2">
+                    <button pButton type="button" [style]="{'border-radius':'15px'}" icon="pi pi-eye me-2" (click)="viewEmployee(employee.id)"  [text]="true" severity="info" >View</button>
+                  </div>
+                  <div class="mb-2">
+                    <button pButton type="button" [style]="{'border-radius':'15px'}" icon="pi pi-pencil me-2" (click)="editEmployee(employee.id)"  [text]="true" severity="warning" >Edit</button>
+                  </div>
+                  <div class="mb-2">
+                    <button pButton type="button" [style]="{'border-radius':'15px'}" icon="pi pi-trash me-2" (click)="deleteEmployee(employee.id)"  [text]="true" severity="danger">Delete</button>
+                  </div>
+                </div>
+              </p-overlayPanel>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Active (12)"></p-tabPanel>
+    <p-tabPanel header="Inactive (2)"></p-tabPanel>
+    <p-tabPanel header="Draft (4)"></p-tabPanel>
+  </p-tabView>
+
+</div>
